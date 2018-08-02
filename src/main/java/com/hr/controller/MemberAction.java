@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class MemberAction {
+	//测试上传
 	public void getUser () {
+		
+	}
+	//测试上传
+	public void getAdmin() {
 		
 	}
 }
