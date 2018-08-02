@@ -1,6 +1,7 @@
 package com.hr.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,5 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class MemberAction {
-	
+	@RequestMapping("/hello")
+	@ResponseBody
+	public String hello() {
+		return "hello world";
+	}
 }
