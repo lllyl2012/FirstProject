@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/regigjj" method="post">
+<input type="hidden" name="token" value="tukhffkl" th:value="${session.token}">
+<input type="text" name="username"><br>
+<input type="password" name="password"><br>
+<input type="submit" value="提交">
+</form>
+</body>
+</html>

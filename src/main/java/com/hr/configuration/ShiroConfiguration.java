@@ -30,6 +30,8 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/index", "anon");
 		filterChainDefinitionMap.put("/login","anon");//无需登录就能访问
 		filterChainDefinitionMap.put("/loginHandler","anon");
+		filterChainDefinitionMap.put("/generalRegistryPage", "anon");
+		filterChainDefinitionMap.put("/generalRegistryPageHandler", "anon");
 		filterChainDefinitionMap.put("/druid/**","anon");
 		filterChainDefinitionMap.put("/admin","roles[admin]");
 		filterChainDefinitionMap.put("/edit","perms[edit]");
