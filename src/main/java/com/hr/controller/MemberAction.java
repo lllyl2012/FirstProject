@@ -1,6 +1,7 @@
 package com.hr.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -9,13 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
-public class MemberAction {
-	//测试上传
-	public void getUser () {
+public class MemberAction {//刚才查了下百度，有冲突的话
+	@RequestMapping("/hello")
+	@ResponseBody
+	public String hello() {
+		String hello = "hello world";
+		return hello;
 		
 	}
-	//测试上传
-	public void getAdmin() {
-		
-	}
+	
+	
 }
