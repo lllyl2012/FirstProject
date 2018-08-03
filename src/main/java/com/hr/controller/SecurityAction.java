@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.hr.model.ResponseResult;
 import com.hr.model.User;
 import com.hr.utils.CSRFTokenUtil;
@@ -84,7 +83,7 @@ public class SecurityAction {
 	 */
 	@PostMapping("/generalLoginHandler")
 	@ResponseBody
-	public ResponseResult generalLoginHandler(@RequestParam("username") String username,@RequestParam("password") String password,HttpSession session) {
+	public ResponseResult<Map<String, String>> generalLoginHandler(@RequestParam("username") String username,@RequestParam("password") String password,HttpSession session) {
 		ResponseResult<Map<String,String>> result = new ResponseResult<>();
 		Map<String,String> resultMap = new HashMap<>();
 		//shiro登录获得用户信息
@@ -119,7 +118,7 @@ public class SecurityAction {
 	 */
 	@PostMapping("/companyLoginHandler")
 	@ResponseBody
-	public ResponseResult companyLoginHandler(@RequestParam("username") String username,@RequestParam("password") String password,HttpSession session) {
+	public ResponseResult<Map<String, String>> companyLoginHandler(@RequestParam("username") String username,@RequestParam("password") String password,HttpSession session) {
 		ResponseResult<Map<String,String>> result = new ResponseResult<>();
 		Map<String,String> resultMap = new HashMap<>();
 		//shiro登录获得用户信息
@@ -177,7 +176,7 @@ public class SecurityAction {
 	 * 生成验证码图片控制器
 	 * @return
 	 */
-	@RequestMapping(value="code.do",
+	@RequestMapping(value="/getImageCode",
 			produces="image/png")
 	@ResponseBody
 	public byte[] code(HttpSession session) 
@@ -228,7 +227,6 @@ public class SecurityAction {
 			result.setMessage("该用户名已存在");
 			return result;
 		}
-		
 		return result;
 	}
 }
