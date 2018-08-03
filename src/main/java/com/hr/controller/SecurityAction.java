@@ -1,5 +1,6 @@
 package com.hr.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.hr.model.ResponseResult;
 import com.hr.model.User;
+import com.hr.utils.CSRFTokenUtil;
+import com.hr.utils.SendCodeUtil;
 
 /**
  * 安全控制中心，登录，注册功能
@@ -137,8 +140,8 @@ public class SecurityAction {
 	 */
 	@GetMapping("/generalRegistryPage")
 	public String generalRegistryPage(HttpSession session) {
-		String token = CSRFtokenUtil.getToken();
-		session.setAttribute("token", "363636");
+		String token = CSRFTokenUtil.getTokenForSession(session);
+		session.setAttribute("token", token);
 		return "generalRegistryPage";
 	}
 
@@ -148,11 +151,11 @@ public class SecurityAction {
 	 * @param telephone
 	 * @return
 	 */
-	@PostMapping("/GetMessageCode")
+	@PostMapping("/getSmsCode")
 	@ResponseBody
-	public ResponseResult<String> getMessageCode(HttpSession session, String telephone){
+	public ResponseResult<String> getSmsCode(HttpSession session, String telephone){
 		ResponseResult<String> result = new ResponseResult<>();
-		String messageCode = SendCodeUtil.getMessageCode(telephone);
+		String messageCode = SmsService.getSmsCode(telephone);
 		session.setAttribute("messageCode", messageCode);
 		result.setData(messageCode);
 		result.setStatus(ResponseResult.STATE_OK);
@@ -166,7 +169,7 @@ public class SecurityAction {
 	 * @param telephone
 	 * @return
 	 */
-	@PostMapping("/GetMessageCode")
+	@PostMapping("/getMessageCode")
 	@ResponseBody
 	public ResponseResult<String> getMessageCode(HttpSession session, String telephone){
 		ResponseResult<String> result = new ResponseResult<>();
@@ -176,6 +179,21 @@ public class SecurityAction {
 		result.setStatus(ResponseResult.STATE_OK);
 		result.setMessage("成功返回");
 		return result;
+	}
+	
+	/**
+	 * 生成验证码图片控制器
+	 * @return
+	 */
+	@RequestMapping(value="code.do",
+			produces="image/png")
+	@ResponseBody
+	public byte[] code(HttpSession session) 
+			throws IOException{
+		String code = SendCodeUtil.genCode(4);
+		session.setAttribute("code", code); 
+		byte[] png = SendCodeUtil.createPng(code);
+		return png;
 	}
 	
 	/**
