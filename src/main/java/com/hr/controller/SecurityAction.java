@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
@@ -22,6 +23,9 @@ import com.hr.model.ResponseResult;
 import com.hr.model.User;
 import com.hr.utils.CSRFTokenUtil;
 import com.hr.utils.SendCodeUtil;
+import com.hr.service.CompanyInfoService;
+import com.hr.service.MemberService;
+import com.hr.service.ResumeService;
 
 /**
  * 安全控制中心，登录，注册功能
@@ -30,6 +34,12 @@ import com.hr.utils.SendCodeUtil;
  */
 @Controller
 public class SecurityAction {
+	@Resource
+	private ResumeService resumeService;
+	@Resource
+	private CompanyInfoService companyInfoService;
+	@Resource
+	MemberService memberService;
 	/**
 	 * 登录页面
 	 * @param model
@@ -85,7 +95,7 @@ public class SecurityAction {
 			User user = (User) subject.getPrincipal();
 			session.setAttribute("user",user);
 			//检查用户简历是否填写完整
-			boolean ifFull = resumeService.checkResumeFull();
+			boolean ifFull = resumeService.checkResumeFull();//checkResumeFull()放到userService里面会不会好点
 			String resumeFull = ifFull?"yes":"no";
 			resultMap.put("resumeFull", resumeFull);
 			
@@ -155,27 +165,9 @@ public class SecurityAction {
 	@ResponseBody
 	public ResponseResult<String> getSmsCode(HttpSession session, String telephone){
 		ResponseResult<String> result = new ResponseResult<>();
-		String messageCode = SmsService.getSmsCode(telephone);
+		String messageCode = SendCodeUtil.getSmsCode(telephone);
 		session.setAttribute("messageCode", messageCode);
 		result.setData(messageCode);
-		result.setStatus(ResponseResult.STATE_OK);
-		result.setMessage("成功返回");
-		return result;
-	}
-	
-	/**
-	 * 返回图片验证码
-	 * @param session
-	 * @param telephone
-	 * @return
-	 */
-	@PostMapping("/getMessageCode")
-	@ResponseBody
-	public ResponseResult<String> getMessageCode(HttpSession session, String telephone){
-		ResponseResult<String> result = new ResponseResult<>();
-		String imageCode = SendCodeUtil.getImageCode(telephone);
-		session.setAttribute("imageCode", imageCode);
-		result.setData(imageCode);
 		result.setStatus(ResponseResult.STATE_OK);
 		result.setMessage("成功返回");
 		return result;
@@ -236,5 +228,7 @@ public class SecurityAction {
 			result.setMessage("该用户名已存在");
 			return result;
 		}
+		
+		return result;
 	}
 }

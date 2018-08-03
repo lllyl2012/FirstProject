@@ -75,4 +75,9 @@ public final class SendCodeUtil {
 		}
 		return new String(code); 
 	}
+
+	public static String getSmsCode(String telephone) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
