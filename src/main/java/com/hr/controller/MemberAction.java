@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
-public class MemberAction {//刚才查了下百度，有冲突的话
+public class MemberAction {
 	@RequestMapping("/hello")
 	@ResponseBody
 	public String hello() {

@@ -3,6 +3,7 @@ package com.hr.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
@@ -19,6 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.hr.model.ResponseResult;
 import com.hr.model.User;
+import com.hr.service.CompanyInfoService;
+import com.hr.service.MemberService;
+import com.hr.service.ResumeService;
+import com.hr.util.CSRFtokenUtil;
+import com.hr.util.SendCodeUtil;
 
 /**
  * 安全控制中心，登录，注册功能
@@ -69,6 +75,8 @@ public class SecurityAction {
 	 * @param session
 	 * @return
 	 */
+	@Resource
+	ResumeService resumeService;
 	@PostMapping("/generalLoginHandler")
 	@ResponseBody
 	public ResponseResult generalLoginHandler(@RequestParam("username") String username,@RequestParam("password") String password,HttpSession session) {
@@ -82,7 +90,7 @@ public class SecurityAction {
 			User user = (User) subject.getPrincipal();
 			session.setAttribute("user",user);
 			//检查用户简历是否填写完整
-			boolean ifFull = resumeService.checkResumeFull();
+			boolean ifFull = resumeService.checkResumeFull();//checkResumeFull()放到userService里面会不会好点
 			String resumeFull = ifFull?"yes":"no";
 			resultMap.put("resumeFull", resumeFull);
 			
@@ -104,6 +112,8 @@ public class SecurityAction {
 	 * @param session
 	 * @return
 	 */
+	@Resource
+	CompanyInfoService companyInfoService；
 	@PostMapping("/companyLoginHandler")
 	@ResponseBody
 	public ResponseResult companyLoginHandler(@RequestParam("username") String username,@RequestParam("password") String password,HttpSession session) {
@@ -137,7 +147,7 @@ public class SecurityAction {
 	 */
 	@GetMapping("/generalRegistryPage")
 	public String generalRegistryPage(HttpSession session) {
-		String token = CSRFtokenUtil.getToken();
+		String token = CSRFtokenUtil.getToken();//token验证
 		session.setAttribute("token", "363636");
 		return "generalRegistryPage";
 	}
@@ -152,7 +162,7 @@ public class SecurityAction {
 	@ResponseBody
 	public ResponseResult<String> getMessageCode(HttpSession session, String telephone){
 		ResponseResult<String> result = new ResponseResult<>();
-		String messageCode = SendCodeUtil.getMessageCode(telephone);
+		String messageCode = SendCodeUtil.getMessageCode(telephone);//
 		session.setAttribute("messageCode", messageCode);
 		result.setData(messageCode);
 		result.setStatus(ResponseResult.STATE_OK);
@@ -186,6 +196,9 @@ public class SecurityAction {
 	 * @param password
 	 * @return
 	 */
+	@Resource
+	MemberService memberService;
+	
 	@PostMapping("/generalRegistryPageHandler")
 	@ResponseBody
 	public ResponseResult<Void> generalRegistryPageHandler(HttpSession session,String token,String imageCode,String messageCode,String username, String password) {
