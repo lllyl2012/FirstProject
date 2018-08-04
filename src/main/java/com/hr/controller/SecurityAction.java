@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hr.model.Company;
 import com.hr.model.ResponseResult;
 import com.hr.model.User;
 import com.hr.utils.CSRFTokenUtil;
 import com.hr.utils.SendCodeUtil;
-import com.hr.service.CompanyInfoService;
+import com.hr.service.BadWordService;
+import com.hr.service.CompanyService;
 import com.hr.service.ResumeService;
 import com.hr.service.UserService;
 
@@ -33,12 +37,15 @@ import com.hr.service.UserService;
  */
 @Controller
 public class SecurityAction {
+	private final static Logger logger = LoggerFactory.getLogger(SecurityAction.class);
 	@Resource
 	private ResumeService resumeService;
 	@Resource
-	private CompanyInfoService companyInfoService;
+	private CompanyService companyService;
 	@Resource
 	private UserService userService;
+	@Resource
+	private BadWordService badWordService;
 	/**
 	 * 登录页面
 	 * @param model
@@ -129,7 +136,7 @@ public class SecurityAction {
 			User user = (User) subject.getPrincipal();
 			session.setAttribute("user",user);
 			//检查用户简历是否填写完整
-			boolean ifFull = companyInfoService.checkResumeFull();
+			boolean ifFull = companyService.checkResumeFull();
 			String resumeFull = ifFull?"yes":"no";
 			resultMap.put("resumeFull", resumeFull);
 			
@@ -197,37 +204,14 @@ public class SecurityAction {
 	 */
 	@PostMapping("/generalRegistryPageHandler")
 	@ResponseBody
-	public ResponseResult<Void> generalRegistryPageHandler(HttpSession session,String token,String imageCode,String messageCode,String username, String password) {
+	public ResponseResult<Void> generalRegistryPageHandler(HttpSession session,String token,String imageCode,String messageCode,String telephone, String password) {
 		ResponseResult<Void> result = new ResponseResult<>();
-		//token验证
-		String sessionToken = (String)session.getAttribute("token");
-		if(sessionToken == null || token == null || !token.equals(sessionToken)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("CSRF攻击");
+		//检查注册信息
+		userService.registryCheck(result, session, token, imageCode, messageCode, telephone);
+		if(result.getStatus() != null) {
 			return result;
 		}
-		//验证图片验证码
-		String sessionImageCode = (String)session.getAttribute("imageCode");
-		if(sessionImageCode == null || imageCode == null || !imageCode.equals(sessionImageCode)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("验证码不正确");
-			return result;
-		}
-		//验证短信验证码
-		String sessionMessageCode = (String)session.getAttribute("messageCode");
-		if(sessionMessageCode == null || messageCode == null || !messageCode.equals(sessionMessageCode)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("验证码不正确");
-			return result;
-		}
-		//验证用户名是否存在
-		boolean ifHaveUsername = userService.checkHaveUser(username);
-		if(ifHaveUsername) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("该用户名已存在");
-			return result;
-		}
-		Integer insertNum = userService.insertMember(username,password);
+		Integer insertNum = userService.insertMember(telephone,password);
 		if(insertNum != 1) {
 			result.setStatus(ResponseResult.STATE_ERROR);
 			result.setMessage("注册失败，未知错误");
@@ -248,37 +232,15 @@ public class SecurityAction {
 	 */
 	@PostMapping("/companyRegistryPageHandler")
 	@ResponseBody
-	public ResponseResult<Void> companyRegistryPageHandler(HttpSession session,String token,String imageCode,String messageCode,String username, String password) {
+	public ResponseResult<Void> companyRegistryPageHandler(HttpSession session,String token,String imageCode,String messageCode,Company company) {
 		ResponseResult<Void> result = new ResponseResult<>();
-		//token验证
-		String sessionToken = (String)session.getAttribute("token");
-		if(sessionToken == null || token == null || !token.equals(sessionToken)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("CSRF攻击");
+		//注册前检查
+		companyService.registryCheck(result, session, token, company);
+		if(result.getStatus() != null) {
 			return result;
 		}
-		//验证图片验证码
-		String sessionImageCode = (String)session.getAttribute("imageCode");
-		if(sessionImageCode == null || imageCode == null || !imageCode.equals(sessionImageCode)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("验证码不正确");
-			return result;
-		}
-		//验证短信验证码
-		String sessionMessageCode = (String)session.getAttribute("messageCode");
-		if(sessionMessageCode == null || messageCode == null || !messageCode.equals(sessionMessageCode)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("验证码不正确");
-			return result;
-		}
-		//验证用户名是否存在
-		boolean ifHaveUsername = userService.checkHaveUser(username);
-		if(ifHaveUsername) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("该用户名已存在");
-			return result;
-		}
-		Integer insertNum = userService.insertMember(username,password);
+		//注册公司
+		Integer insertNum = companyService.insertCompany(company);
 		if(insertNum != 1) {
 			result.setStatus(ResponseResult.STATE_ERROR);
 			result.setMessage("注册失败，未知错误");
@@ -286,6 +248,26 @@ public class SecurityAction {
 		}
 		result.setStatus(ResponseResult.STATE_OK);
 		result.setMessage("注册成功");
+		return result;
+	}
+	
+	/**
+	 * 检查公司名是否存在
+	 * @param companyName
+	 * @return
+	 */
+	@PostMapping("/checkCompanyName")
+	@ResponseBody
+	public ResponseResult<Void> checkCompanyName(String companyName) {
+		ResponseResult<Void> result = new ResponseResult<>();
+		boolean ifHaveName = companyService.checkCompanyName(companyName);
+		if(ifHaveName) {
+			result.setStatus(ResponseResult.STATE_ERROR);
+			result.setMessage("该公司名已存在");
+			return result;
+		}
+		result.setStatus(ResponseResult.STATE_OK);
+		result.setMessage("该公司名已存在");
 		return result;
 	}
 }

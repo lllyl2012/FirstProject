@@ -1,0 +1,7 @@
+2018-08-04 15:52:12,382 INFO (StartupInfoLogger.java:50)- Starting PcProjectApplication on YIF201801230857 with PID 6140 (D:\eclipse-jee-oxygen-3a-win32-x86_64\workspace2\pcProject\target\classes started by Administrator in D:\eclipse-jee-oxygen-3a-win32-x86_64\workspace2\pcProject)
+2018-08-04 15:52:12,383 DEBUG (StartupInfoLogger.java:53)- Running with Spring Boot v2.0.4.RELEASE, Spring v5.0.8.RELEASE
+2018-08-04 15:52:12,384 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-04 15:53:38,302 INFO (StartupInfoLogger.java:50)- Starting PcProjectApplication on YIF201801230857 with PID 4680 (D:\eclipse-jee-oxygen-3a-win32-x86_64\workspace2\pcProject\target\classes started by Administrator in D:\eclipse-jee-oxygen-3a-win32-x86_64\workspace2\pcProject)
+2018-08-04 15:53:38,303 DEBUG (StartupInfoLogger.java:53)- Running with Spring Boot v2.0.4.RELEASE, Spring v5.0.8.RELEASE
+2018-08-04 15:53:38,304 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-04 15:53:42,044 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 4.112 seconds (JVM running for 4.493)
