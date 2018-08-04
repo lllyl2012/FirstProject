@@ -3,7 +3,7 @@ package com.hr.service.impl;
 import org.springframework.stereotype.Service;
 
 import com.hr.service.MemberService;
-@Service
+@Service("memberService")
 public class MemberServiceImpl implements MemberService{
 	/**
 	 * 检查用户名是否存在

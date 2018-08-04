@@ -3,7 +3,7 @@ package com.hr.service.impl;
 import org.springframework.stereotype.Service;
 
 import com.hr.service.ResumeService;
-@Service
+@Service("resumeService")
 public class ResumeServiceImpl implements ResumeService{
 	/**
 	 * 检查用户简历知否完整

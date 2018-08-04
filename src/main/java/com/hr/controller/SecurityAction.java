@@ -38,7 +38,7 @@ public class SecurityAction {
 	@Resource
 	private CompanyInfoService companyInfoService;
 	@Resource
-	MemberService memberService;
+	private MemberService memberService;
 	/**
 	 * 登录页面
 	 * @param model

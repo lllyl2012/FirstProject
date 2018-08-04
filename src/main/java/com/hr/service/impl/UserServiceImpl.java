@@ -7,7 +7,7 @@ import com.hr.mapper.UserMapper;
 import com.hr.model.User;
 import com.hr.service.UserService;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService{
 
 	@Autowired

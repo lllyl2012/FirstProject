@@ -3,7 +3,7 @@ package com.hr.service.impl;
 import org.springframework.stereotype.Service;
 
 import com.hr.service.CompanyInfoService;
-@Service
+@Service("companyInfoService")
 public class CompanyInfoServiceImpl implements CompanyInfoService{
 	/**
 	 * 检查公司信息是否完整
