@@ -1,11 +1,17 @@
 package com.hr.model;
+
 /**
  * 储存短信返回信息实体类
+ * 
  * @author volume
  */
 public class SmsResult {
 	private String status;
 	private String message;
+
+	public SmsResult() {
+		super();
+	}
 
 	public String getStatus() {
 		return status;
@@ -29,7 +35,4 @@ public class SmsResult {
 		this.message = message;
 	}
 
-	public SmsResult() {
-
-	}
 }

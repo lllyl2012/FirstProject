@@ -5,5 +5,5 @@ public interface CompanyInfoService {
 	/**
 	 * 检查公司信息是否完整
 	 */
-	public boolean checkResumeFull();
+	boolean checkResumeFull();
 }

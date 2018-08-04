@@ -23,8 +23,8 @@ import com.hr.model.User;
 import com.hr.utils.CSRFTokenUtil;
 import com.hr.utils.SendCodeUtil;
 import com.hr.service.CompanyInfoService;
-import com.hr.service.MemberService;
 import com.hr.service.ResumeService;
+import com.hr.service.UserService;
 
 /**
  * 安全控制中心，登录，注册功能
@@ -38,7 +38,7 @@ public class SecurityAction {
 	@Resource
 	private CompanyInfoService companyInfoService;
 	@Resource
-	private MemberService memberService;
+	private UserService userService;
 	/**
 	 * 登录页面
 	 * @param model
@@ -179,7 +179,7 @@ public class SecurityAction {
 	@RequestMapping(value="/getImageCode",
 			produces="image/png")
 	@ResponseBody
-	public byte[] code(HttpSession session) 
+	public byte[] getImageCode(HttpSession session) 
 			throws IOException{
 		String code = SendCodeUtil.genCode(4);
 		session.setAttribute("code", code); 
@@ -221,12 +221,71 @@ public class SecurityAction {
 			return result;
 		}
 		//验证用户名是否存在
-		boolean ifHaveUsername = memberService.checkHaveUser(username);
+		boolean ifHaveUsername = userService.checkHaveUser(username);
 		if(ifHaveUsername) {
 			result.setStatus(ResponseResult.STATE_ERROR);
 			result.setMessage("该用户名已存在");
 			return result;
 		}
+		Integer insertNum = userService.insertMember(username,password);
+		if(insertNum != 1) {
+			result.setStatus(ResponseResult.STATE_ERROR);
+			result.setMessage("注册失败，未知错误");
+			return result;
+		}
+		result.setStatus(ResponseResult.STATE_OK);
+		result.setMessage("注册成功");
+		return result;
+	}
+	
+	/**
+	 * 处理企业用户注册
+	 * @param session
+	 * @param token
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	@PostMapping("/companyRegistryPageHandler")
+	@ResponseBody
+	public ResponseResult<Void> companyRegistryPageHandler(HttpSession session,String token,String imageCode,String messageCode,String username, String password) {
+		ResponseResult<Void> result = new ResponseResult<>();
+		//token验证
+		String sessionToken = (String)session.getAttribute("token");
+		if(sessionToken == null || token == null || !token.equals(sessionToken)) {
+			result.setStatus(ResponseResult.STATE_ERROR);
+			result.setMessage("CSRF攻击");
+			return result;
+		}
+		//验证图片验证码
+		String sessionImageCode = (String)session.getAttribute("imageCode");
+		if(sessionImageCode == null || imageCode == null || !imageCode.equals(sessionImageCode)) {
+			result.setStatus(ResponseResult.STATE_ERROR);
+			result.setMessage("验证码不正确");
+			return result;
+		}
+		//验证短信验证码
+		String sessionMessageCode = (String)session.getAttribute("messageCode");
+		if(sessionMessageCode == null || messageCode == null || !messageCode.equals(sessionMessageCode)) {
+			result.setStatus(ResponseResult.STATE_ERROR);
+			result.setMessage("验证码不正确");
+			return result;
+		}
+		//验证用户名是否存在
+		boolean ifHaveUsername = userService.checkHaveUser(username);
+		if(ifHaveUsername) {
+			result.setStatus(ResponseResult.STATE_ERROR);
+			result.setMessage("该用户名已存在");
+			return result;
+		}
+		Integer insertNum = userService.insertMember(username,password);
+		if(insertNum != 1) {
+			result.setStatus(ResponseResult.STATE_ERROR);
+			result.setMessage("注册失败，未知错误");
+			return result;
+		}
+		result.setStatus(ResponseResult.STATE_OK);
+		result.setMessage("注册成功");
 		return result;
 	}
 }
