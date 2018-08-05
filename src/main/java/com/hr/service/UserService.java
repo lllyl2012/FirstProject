@@ -27,15 +27,18 @@ public interface UserService {
 	 * @return
 	 */
 	User findByUsername(String username);
+	
 	/**
-	 * 注册用户前检查
-	 * @param result
-	 * @param session
-	 * @param token
-	 * @param imageCode
-	 * @param messageCode
-	 * @param username
+	 * 检查是否存在该手机号码
+	 * @param telephone
 	 * @return
 	 */
-	void registryCheck(ResponseResult<Void> result,HttpSession session,String token,String imageCode,String messageCode,String telephone);
+	boolean checkHaveTelephone(String telephone);
+
+	/**
+	 * 重置密码
+	 * @param telephone
+	 * @return
+	 */
+	Integer updatePassword(String telephone);
 }

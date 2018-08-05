@@ -1,6 +1,5 @@
 package com.hr.service.impl;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hr.mapper.UserMapper;
-import com.hr.model.ResponseResult;
 import com.hr.model.User;
 import com.hr.service.UserService;
 
@@ -49,32 +47,20 @@ public class UserServiceImpl implements UserService {
 		return userMapper.findByUsername(username);
 	}
 
+	/**
+	 * 检查是否存在该手机号码
+	 */
 	@Override
-	public void registryCheck(ResponseResult<Void> result, HttpSession session, String token,
-			String imageCode, String messageCode, String telephone) {
-		// token验证
-		String sessionToken = (String) session.getAttribute("token");
-		if (sessionToken == null || token == null || !token.equals(sessionToken)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("CSRF攻击");
-		}
-		// 验证图片验证码
-		String sessionImageCode = (String) session.getAttribute("imageCode");
-		if (sessionImageCode == null || imageCode == null || !imageCode.equals(sessionImageCode)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("验证码不正确");
-		}
-		// 验证短信验证码
-		String sessionMessageCode = (String) session.getAttribute("messageCode");
-		if (sessionMessageCode == null || messageCode == null || !messageCode.equals(sessionMessageCode)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("验证码不正确");
-		}
-		// 验证用户名是否存在
-		boolean ifHaveUsername = checkHaveUser(telephone);
-		if (ifHaveUsername) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("该用户名已存在");
-		}
+	public boolean checkHaveTelephone(String telephone) {
+		return true;
+	}
+
+	/**
+	 * 重置密码
+	 */
+	@Override
+	public Integer updatePassword(String telephone) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
