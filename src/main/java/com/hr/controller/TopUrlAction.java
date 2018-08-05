@@ -8,6 +8,7 @@ public class TopUrlAction {
 
 	@RequestMapping("/index")
 	public String index() {
+		System.out.println(22);
 		return "index";
 	}
 }

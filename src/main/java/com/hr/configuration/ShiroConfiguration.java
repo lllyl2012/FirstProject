@@ -29,12 +29,17 @@ public class ShiroConfiguration {
 		LinkedHashMap<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
 		filterChainDefinitionMap.put("/index", "anon");
 		filterChainDefinitionMap.put("/login","anon");//无需登录就能访问
+		filterChainDefinitionMap.put("/generalLoginHandler","anon");//无需登录就能访问
+		filterChainDefinitionMap.put("/companyLoginHandler","anon");//无需登录就能访问
 		filterChainDefinitionMap.put("/loginHandler","anon");
 		filterChainDefinitionMap.put("/generalRegistryPage", "anon");
 		filterChainDefinitionMap.put("/generalRegistryPageHandler", "anon");
+		//静态文件
+		filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/images/**", "anon");
 		filterChainDefinitionMap.put("/druid/**","anon");
-		filterChainDefinitionMap.put("/admin","roles[admin]");
-		filterChainDefinitionMap.put("/edit","perms[edit]");
 		filterChainDefinitionMap.put("/**", "user");//登录了就能访问
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return bean;

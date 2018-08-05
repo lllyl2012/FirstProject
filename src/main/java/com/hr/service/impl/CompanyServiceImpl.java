@@ -49,12 +49,6 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public void registryCheck(ResponseResult<Void> result, HttpSession session, String token, Company company) {
-		// token验证
-		String sessionToken = (String) session.getAttribute("token");
-		if (sessionToken == null || token == null || !token.equals(sessionToken)) {
-			result.setStatus(ResponseResult.STATE_ERROR);
-			result.setMessage("CSRF攻击");
-		}
 		boolean ifHaveName = checkCompanyName(company.getCompanyName());
 		if (ifHaveName) {
 			result.setStatus(ResponseResult.STATE_ERROR);
