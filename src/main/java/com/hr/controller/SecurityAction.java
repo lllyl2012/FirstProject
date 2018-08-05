@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
@@ -36,7 +37,7 @@ import com.hr.service.UserService;
  * @author Administrator
  */
 @Controller
-public class SecurityAction {
+public class SecurityAction extends CommonAction{
 	private final static Logger logger = LoggerFactory.getLogger(SecurityAction.class);
 	@Resource
 	private ResumeService resumeService;
@@ -178,11 +179,16 @@ public class SecurityAction {
 	 */
 	@PostMapping("/getSmsCode")
 	@ResponseBody
-	public ResponseResult<String> getSmsCode(HttpSession session, String telephone) {
+	public ResponseResult<String> getSmsCode(HttpSession session,String imageCode, String telephone) {
 		ResponseResult<String> result = new ResponseResult<>();
-		String messageCode = SendCodeUtil.getSmsCode(telephone);
-		session.setAttribute("messageCode", messageCode);
-		result.setData(messageCode);
+		// 验证图片验证码
+		boolean ifPass = checkImageCode(result, session, imageCode);
+		if(!ifPass) {
+			return result;
+		}
+		String smsCode = SendCodeUtil.getSmsCode(telephone);
+		session.setAttribute("smsCode", smsCode);
+		result.setData(smsCode);
 		result.setStatus(ResponseResult.STATE_OK);
 		result.setMessage("成功返回");
 		return result;
@@ -214,11 +220,19 @@ public class SecurityAction {
 	@PostMapping("/generalRegistryPageHandler")
 	@ResponseBody
 	public ResponseResult<Void> generalRegistryPageHandler(HttpSession session, String token, String imageCode,
-			String messageCode, String telephone, String password) {
+			String smsCode, String telephone, String password) {
 		ResponseResult<Void> result = new ResponseResult<>();
-		// 检查注册信息
-		userService.registryCheck(result, session, token, imageCode, messageCode, telephone);
-		if (result.getStatus() != null) {
+		boolean ifToken = checkToken(result, session, token);
+		if(!ifToken) {
+			return result;
+		}
+		boolean ifSmsCode = checkSmsCode(result, session, smsCode);
+		if(!ifSmsCode) {
+			return result;
+		}
+		// 检查手机是否注册
+		boolean ifHaveTelephone = userService.checkHaveTelephone(telephone);
+		if (!ifHaveTelephone) {
 			return result;
 		}
 		Integer insertNum = userService.insertMember(telephone, password);
@@ -244,9 +258,13 @@ public class SecurityAction {
 	@PostMapping("/companyRegistryPageHandler")
 	@ResponseBody
 	public ResponseResult<Void> companyRegistryPageHandler(HttpSession session, String token, String imageCode,
-			String messageCode, Company company) {
+			String smsCode, Company company) {
 		ResponseResult<Void> result = new ResponseResult<>();
-		// 注册前检查
+		boolean ifToken = checkToken(result, session, token);
+		if(!ifToken) {
+			return result;
+		}
+		// 注册前检查公司名和用户名是否被注册
 		companyService.registryCheck(result, session, token, company);
 		if (result.getStatus() != null) {
 			return result;
@@ -281,6 +299,64 @@ public class SecurityAction {
 		}
 		result.setStatus(ResponseResult.STATE_OK);
 		result.setMessage("该公司名已存在");
+		return result;
+	}
+
+	/**
+	 * 密码手机找回页面
+	 */
+	@GetMapping("/findPwd")
+	public String findPwd() {
+		return "findPwd";
+	}
+
+	/**
+	 * 密码手机找回处理
+	 */
+	@PostMapping("/findPwdHandler")
+	@ResponseBody
+	public ResponseResult<Void> findPwdHandler(HttpSession session,String smsCode,String telephone) {
+		ResponseResult<Void> result = new ResponseResult<>();
+		// 先验证验证码是否通过
+		boolean ifSmsCode = checkSmsCode(result, session, smsCode);
+		if(!ifSmsCode) {
+			return result;
+		}
+		// 再验证号码是否注册过
+		boolean ifTelephoneExist = userService.checkHaveTelephone(telephone);
+		if(!ifTelephoneExist) {
+			result.setStatus(ResponseResult.STATE_ERROR);
+			result.setMessage("该号码尚未注册");
+			return result;
+		}
+		//将该号码储存入session
+		session.setAttribute("telephone", telephone);
+		result.setStatus(ResponseResult.STATE_OK);
+		result.setMessage("认证通过");
+		return result;
+	}
+	
+	/**
+	 * 重置密码页面
+	 */
+	@GetMapping("/findPasswordChange")
+	public String findPasswordChange() {
+		return "findPasswordChange";
+	}
+	
+	@PostMapping("/findPasswordChangeHandler")
+	@ResponseBody
+	public ResponseResult<Void> findPasswordChangeHandler(HttpSession session) {
+		ResponseResult<Void> result = new ResponseResult<>();
+		String telephone = (String)session.getAttribute("telephone");
+		Integer num = userService.updatePassword(telephone);
+		if(num == 0) {
+			result.setStatus(ResponseResult.STATE_ERROR);
+			result.setMessage("重置失败，未知错误");
+			return result;
+		}
+		result.setStatus(ResponseResult.STATE_OK);
+		result.setMessage("重置成功");
 		return result;
 	}
 }
