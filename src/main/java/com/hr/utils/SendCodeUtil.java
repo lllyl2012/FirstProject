@@ -66,7 +66,7 @@ public final class SendCodeUtil {
 		return bytes;
 	}
 
-	public static String genCode(int len){
+	public static String getCode(int len){
 		char[] code=new char[len];
 		Random random = new Random();
 		for(int i=0; i<code.length; i++){
