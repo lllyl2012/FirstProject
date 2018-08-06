@@ -44,9 +44,9 @@ insert into permission_role values(2,4);
 --用户角色关系表--
 create table user_role(
 	uid int(11) not null,
-	pid int(11) not null,
+	rid int(11) not null,
 	KEY idx_uid(uid),
-	KEY idx_pid(pid)
+	KEY idx_rid(rid)
 )ENGINE = InnoDB default charset = utf8;
 insert into user_role values(1,1);
 insert into user_role values(2,2);

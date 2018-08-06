@@ -1,8 +1,5 @@
 package com.hr.service;
 
-import javax.servlet.http.HttpSession;
-
-import com.hr.model.ResponseResult;
 import com.hr.model.User;
 
 public interface UserService {

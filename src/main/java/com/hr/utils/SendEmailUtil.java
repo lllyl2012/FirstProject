@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SendEmailUtil {
 	
 	@Autowired
-	JavaMailSender jms;
+	private JavaMailSender jms;
 	public String sendEmail(){
 		//建立邮件消息
 		SimpleMailMessage mainMessage = new SimpleMailMessage();
