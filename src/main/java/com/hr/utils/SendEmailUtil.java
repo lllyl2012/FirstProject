@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SendEmailUtil {
 	
 	@Autowired
-	private static JavaMailSender jms;//不知道自动注入静态变量可不可以，假如运行有出错这里要注意一下
+	static JavaMailSender jms;//不知道自动注入静态变量可不可以，假如运行有出错这里要注意一下
 	
 	public static String sendEmail(){
+
 		//建立邮件消息
 		SimpleMailMessage mainMessage = new SimpleMailMessage();
 		//发送者

@@ -202,7 +202,7 @@ public class SecurityAction extends CommonAction{
 	@RequestMapping(value = "/getImageCode", produces = "image/png")
 	@ResponseBody
 	public byte[] getImageCode(HttpSession session) throws IOException {
-		String code = SendCodeUtil.genCode(4);
+		String code = SendCodeUtil.getCode(4);
 		session.setAttribute("code", code);
 		byte[] png = SendCodeUtil.createPng(code);
 		return png;

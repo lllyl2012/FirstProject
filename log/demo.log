@@ -83,3 +83,94 @@
 2018-08-04 20:28:33,626 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 2
 2018-08-04 20:28:56,697 DEBUG (SecurityAction.java:57)- 登录了
 2018-08-04 20:29:36,797 DEBUG (SecurityAction.java:57)- 登录了
+2018-08-06 15:01:40,707 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 15:02:22,944 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 15:03:04,571 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 15:03:08,575 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 6.103 seconds (JVM running for 6.487)
+2018-08-06 15:03:46,562 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 15:03:58,278 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 15:04:05,211 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 15:04:05,281 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 15:04:11,427 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 15:04:11,657 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 15:04:11,945 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 15:04:18,369 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 15:04:22,654 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 15:04:22,722 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 15:12:31,948 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 15:12:38,168 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 8.356 seconds (JVM running for 8.78)
+2018-08-06 15:57:09,872 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 15:57:15,533 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 7.856 seconds (JVM running for 8.32)
+2018-08-06 16:02:57,751 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 16:03:02,836 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 7.157 seconds (JVM running for 7.592)
+2018-08-06 16:03:15,062 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:03:15,900 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:04:49,428 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:04:49,583 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:04:49,716 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:07,394 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:11,693 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:18,355 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:05:18,356 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:05:18,410 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:20,937 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:21,752 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:05:21,755 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:05:21,823 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:22,922 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:23,662 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:05:23,665 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:05:23,739 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:25,085 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:25,691 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:05:25,694 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:05:25,751 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:27,392 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:28,157 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:05:28,160 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:05:28,279 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:47,358 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:47,411 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:05:59,125 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:05:59,127 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:05:59,184 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:06:36,452 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 16:06:42,833 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 8.71 seconds (JVM running for 9.755)
+2018-08-06 16:07:34,750 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:07:35,156 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:07:42,822 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:07:47,215 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:07:51,220 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:07:56,765 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:08:01,714 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:08:01,736 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:09:55,570 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:09:55,590 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:10:07,578 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:10:10,623 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:10:48,202 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:10:48,218 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:10:55,084 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:11:10,158 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:11:24,844 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:11:24,917 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:11:39,884 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:15:39,330 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 16:15:44,489 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 7.271 seconds (JVM running for 7.711)
+2018-08-06 16:17:45,714 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:17:45,892 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:20:47,462 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:20:47,463 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:20:47,626 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 2
+2018-08-06 16:22:06,142 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:22:06,143 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:22:06,146 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 2
+2018-08-06 16:22:37,758 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 16:22:43,192 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 7.586 seconds (JVM running for 8.023)
+2018-08-06 16:23:31,694 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-06 16:23:36,927 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 7.481 seconds (JVM running for 7.906)
+2018-08-06 16:23:43,132 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:23:43,610 DEBUG (SecurityAction.java:59)- 登录了
+2018-08-06 16:23:44,560 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT u.*,r.*,p.* FROM user u inner join user_role ur ON ur.uid = u.uid INNER JOIN role r ON r.rid = ur.rid INNER JOIN permission_role pr ON pr.rid = r.rid INNER JOIN permission p ON p.pid = pr.pid WHERE u.username = ? 
+2018-08-06 16:23:44,716 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: demo(String)
+2018-08-06 16:23:44,739 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 2
