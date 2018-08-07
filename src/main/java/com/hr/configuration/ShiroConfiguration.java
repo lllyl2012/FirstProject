@@ -31,7 +31,6 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/login","anon");//无需登录就能访问
 		filterChainDefinitionMap.put("/generalLoginHandler","anon");//无需登录就能访问
 		filterChainDefinitionMap.put("/companyLoginHandler","anon");//无需登录就能访问
-		filterChainDefinitionMap.put("/loginHandler","anon");
 		filterChainDefinitionMap.put("/generalRegistryPage", "anon");
 		filterChainDefinitionMap.put("/generalRegistryPageHandler", "anon");
 		//静态文件

@@ -55,11 +55,7 @@ public class AuthRealm extends AuthorizingRealm{
 	//认证登录
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
-		String username = usernamePasswordToken.getUsername();
-		User user = userService.findByUsername(username);
-		
-		return new SimpleAuthenticationInfo(user,user.getPassword(),this.getClass().getName());
+		return null;
 	}
 	
 }
