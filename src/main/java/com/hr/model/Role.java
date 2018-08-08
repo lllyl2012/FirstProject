@@ -1,9 +1,11 @@
 package com.hr.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Role {
+public class Role implements Serializable{
+	private static final long serialVersionUID = 4277219438850374269L;
 	private Integer rid;
 	private String rname;
 	private Set<Permission> permissions = new HashSet<>();

@@ -1,6 +1,9 @@
 package com.hr.model;
 
-public class Permission {
+import java.io.Serializable;
+
+public class Permission implements Serializable{
+	private static final long serialVersionUID = -556018719951276351L;
 	private Integer pid;
 	private String name;
 	private String url;

@@ -1,4 +1,40 @@
-2018-08-07 16:31:09,118 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
-2018-08-07 16:31:14,697 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 7.769 seconds (JVM running for 8.215)
-2018-08-07 16:59:47,205 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
-2018-08-07 16:59:52,981 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 8.021 seconds (JVM running for 8.455)
+2018-08-08 10:15:20,897 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 10:15:27,662 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 9.0 seconds (JVM running for 9.447)
+2018-08-08 10:19:48,168 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 10:19:54,360 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 8.311 seconds (JVM running for 8.731)
+2018-08-08 10:27:57,197 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 10:28:03,740 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 8.738 seconds (JVM running for 9.158)
+2018-08-08 10:30:37,772 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 10:30:44,336 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 10.626 seconds (JVM running for 11.364)
+2018-08-08 10:47:37,737 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 10:47:43,907 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 8.267 seconds (JVM running for 8.8)
+2018-08-08 14:02:01,745 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 14:02:08,626 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 9.106 seconds (JVM running for 9.538)
+2018-08-08 14:05:20,542 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 14:05:26,991 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 8.581 seconds (JVM running for 9.032)
+2018-08-08 14:10:14,145 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 14:10:20,527 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 8.483 seconds (JVM running for 8.9)
+2018-08-08 15:49:27,606 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 15:49:33,244 INFO (StartupInfoLogger.java:59)- Started PcTests in 7.971 seconds (JVM running for 10.12)
+2018-08-08 15:54:22,148 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 15:54:27,578 INFO (StartupInfoLogger.java:59)- Started PcTests in 7.514 seconds (JVM running for 8.377)
+2018-08-08 15:58:54,153 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 15:58:59,848 INFO (StartupInfoLogger.java:59)- Started PcTests in 7.831 seconds (JVM running for 8.728)
+2018-08-08 15:59:24,866 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 15:59:30,538 INFO (StartupInfoLogger.java:59)- Started PcTests in 7.722 seconds (JVM running for 8.664)
+2018-08-08 16:00:36,876 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 16:00:42,461 INFO (StartupInfoLogger.java:59)- Started PcTests in 7.72 seconds (JVM running for 8.598)
+2018-08-08 16:07:27,671 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 16:07:33,316 INFO (StartupInfoLogger.java:59)- Started PcTests in 7.755 seconds (JVM running for 8.632)
+2018-08-08 16:10:25,301 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 16:10:30,961 INFO (StartupInfoLogger.java:59)- Started PcTests in 7.757 seconds (JVM running for 8.633)
+2018-08-08 16:11:26,833 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 16:11:34,111 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 9.466 seconds (JVM running for 9.987)
+2018-08-08 16:12:44,394 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 16:12:52,936 INFO (StartupInfoLogger.java:59)- Started PcProjectApplication in 11.016 seconds (JVM running for 12.257)
+2018-08-08 16:19:14,019 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 16:19:19,649 INFO (StartupInfoLogger.java:59)- Started PcTests in 7.759 seconds (JVM running for 8.681)
+2018-08-08 16:20:48,259 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 16:20:54,018 INFO (StartupInfoLogger.java:59)- Started PcTests in 7.835 seconds (JVM running for 8.706)
+2018-08-08 16:27:27,792 INFO (SpringApplication.java:662)- No active profile set, falling back to default profiles: default
+2018-08-08 16:27:33,917 INFO (StartupInfoLogger.java:59)- Started PcTests in 8.353 seconds (JVM running for 9.342)

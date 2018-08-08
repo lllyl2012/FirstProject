@@ -1,9 +1,11 @@
 package com.hr.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable{
+	private static final long serialVersionUID = 6670838663257057900L;
 	private Integer uid;
 	private String username;
 	private String password;

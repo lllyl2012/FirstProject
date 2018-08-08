@@ -257,4 +257,5 @@ public class SecurityAction extends CommonAction{
 		result.setMessage("重置成功");
 		return result;
 	}
+	
 }
