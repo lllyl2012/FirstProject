@@ -51,7 +51,7 @@ public class SendEmailUtil {
 
 			helper.setText(sb.toString(), true);
 			FileSystemResource fileSystemResource = new FileSystemResource(new File("E:\\aaa.docx"));
-			helper.addAttachment("docx", fileSystemResource);
+			helper.addAttachment("aa.docx", fileSystemResource);
 			jms.send(message);
 			return "attach";
 		} catch (MessagingException e) {

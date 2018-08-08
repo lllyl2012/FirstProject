@@ -27,8 +27,8 @@ public class TopUrlAction {
 	@ResponseBody
 	public String emailDemo() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<a href='http://www.baidu.com'></a>");
-		SendEmailUtil.sendEmail();
+		sb.append("<a href='http://www.baidu.com'>qqqqqq</a>");
+		SendEmailUtil.sendAttachMail(sb);
 		return "a";
 	}
 }
